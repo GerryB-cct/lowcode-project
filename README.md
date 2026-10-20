@@ -1,6 +1,9 @@
 # GerryB-cct
 
-A minimal [Flask](https://flask.palletsprojects.com/) 3.x web application. It serves a single route, `/`, which returns an HTML page saying **"Hello from GerryB-cct"**.
+A minimal [Flask](https://flask.palletsprojects.com/) 3.x web application with two routes:
+
+- `/` returns an HTML page saying **"Hello from GerryB-cct"**.
+- `/about` returns a short answer to "What would you build if it took an evening instead of a quarter?"
 
 ## Project files
 
