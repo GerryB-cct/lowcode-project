@@ -1,5 +1,7 @@
 from flask import Flask
 from markupsafe import escape
+from flask import render_template, request
+import re
 
 app = Flask(__name__)
 
@@ -40,6 +42,45 @@ def about():
   <p>{escape(ABOUT_TEXT)}</p>
 </body>
 </html>"""
+
+
+# Pragmatic email check: local@domain.tld, ASCII only, no spaces,
+# no leading/trailing/double dots, domain labels may not start or end with "-".
+EMAIL_RE = re.compile(
+    r"[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
+    r"@"
+    r"(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+"
+    r"[A-Za-z]{2,63}"
+)
+
+
+def validate_contact(name, email, message):
+    errors = {}
+    if not name.strip():
+        errors["name"] = "Please enter your name."
+    if len(email.strip()) > 254 or not EMAIL_RE.fullmatch(email.strip()):
+        errors["email"] = "Please enter a valid email address, e.g. name@example.com."
+    if not message.strip():
+        errors["message"] = "Please enter a message."
+    return errors
+
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "GET":
+        return render_template("contact.html", form={}, errors={})
+
+    form = {
+        "name": request.form.get("name", ""),
+        "email": request.form.get("email", ""),
+        "message": request.form.get("message", ""),
+    }
+    errors = validate_contact(form["name"], form["email"], form["message"])
+    if errors:
+        return render_template("contact.html", form=form, errors=errors), 400
+
+    # Nothing is stored or sent: the submission is discarded after this response.
+    return render_template("contact_success.html", name=form["name"].strip())
 
 
 if __name__ == "__main__":

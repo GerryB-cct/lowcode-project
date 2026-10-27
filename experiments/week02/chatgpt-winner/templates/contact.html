@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact - GerryB-cct</title>
+  <style>
+    .error { color: #b00020; }
+  </style>
+</head>
+<body>
+  <h1>Contact</h1>
+
+  {% if errors %}
+    <p class="error" role="alert">Please fix the errors below.</p>
+  {% endif %}
+
+  {# novalidate: skip browser checks so the server-side validation is what runs #}
+  <form method="post" action="{{ url_for('contact') }}" novalidate>
+    <p>
+      <label for="name">Name</label><br>
+      <input type="text" id="name" name="name" value="{{ form.name }}"
+        {% if errors.name %}aria-invalid="true" aria-describedby="name-error"{% endif %}>
+      {% if errors.name %}<br><span class="error" id="name-error">{{ errors.name }}</span>{% endif %}
+    </p>
+    <p>
+      <label for="email">Email</label><br>
+      <input type="email" id="email" name="email" value="{{ form.email }}"
+        {% if errors.email %}aria-invalid="true" aria-describedby="email-error"{% endif %}>
+      {% if errors.email %}<br><span class="error" id="email-error">{{ errors.email }}</span>{% endif %}
+    </p>
+    <p>
+      <label for="message">Message</label><br>
+      <textarea id="message" name="message" rows="6" cols="40"
+        {% if errors.message %}aria-invalid="true" aria-describedby="message-error"{% endif %}>{{ form.message }}</textarea>
+      {% if errors.message %}<br><span class="error" id="message-error">{{ errors.message }}</span>{% endif %}
+    </p>
+    <p><button type="submit">Send</button></p>
+  </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact - GerryB-cct</title>
+</head>
+<body>
+  <h1>Contact</h1>
+  <form method="post" action="/contact">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" value="{{ values.name }}" aria-describedby="name-error">
+      {% if errors.name %}<p id="name-error" role="alert">{{ errors.name }}</p>{% endif %}
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="text" value="{{ values.email }}" aria-describedby="email-error">
+      {% if errors.email %}<p id="email-error" role="alert">{{ errors.email }}</p>{% endif %}
+    </div>
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" aria-describedby="message-error">{{ values.message }}</textarea>
+      {% if errors.message %}<p id="message-error" role="alert">{{ errors.message }}</p>{% endif %}
+    </div>
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
