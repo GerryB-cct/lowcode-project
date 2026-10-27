@@ -4,15 +4,24 @@ A minimal [Flask](https://flask.palletsprojects.com/) 3.x web application with 3
 
 - `/` returns an HTML page saying **"Hello from GerryB-cct"**.
 - `/about` returns a short answer to "What would you build if it took an evening instead of a quarter?"
--'/contact' returns a short form that allows a name, email address and message to be sent to the server and the e-mail address is server side validated
+- `/contact` returns a short form that allows a name, email address and message to be sent to the server and the e-mail address is server side validated
 
 ## Project files
 
-|File|Purpose|
-|-|-|
-|`app.py`|The Flask application|
-|`requirements.txt`|Pinned dependency versions|
-
+lowcode-project/
+├── app.py                     The Flask application
+├── requirements.txt           Pinned dependency versions
+├── templates/
+│   ├── contact.html           Contact form, with error messages
+│   └── contact_success.html   Confirmation page after a valid submission
+└── experiments/
+    ├── week02/
+    │   ├── chatgpt-winner/    ChatGPT's contact form (unedited; this version was kept)
+    │   └── claude/            Claude's contact form (unedited)
+    └── docs/
+        ├── week02-tool-comparison.md   Week 2 AI tool comparison report
+        ├── notes.md                    Working notes
+        └── images/                     Screenshots used in the report
 ## Requirements
 
 * Python 3.9 or newer (Flask 3.1 minimum). Tested with Python 3.13.\*Correction: "Tested with Python 3.13 on Linux, plus 3.15 on Windows"
