@@ -7,7 +7,7 @@ A minimal [Flask](https://flask.palletsprojects.com/) 3.x web application with 3
 - `/contact` returns a short form that allows a name, email address and message to be sent to the server and the e-mail address is server side validated
 
 ## Project files
-
+```text
 lowcode-project/
 ├── app.py                     The Flask application
 ├── requirements.txt           Pinned dependency versions
@@ -22,6 +22,7 @@ lowcode-project/
         ├── week02-tool-comparison.md   Week 2 AI tool comparison report
         ├── notes.md                    Working notes
         └── images/                     Screenshots used in the report
+```
 ## Requirements
 
 * Python 3.9 or newer (Flask 3.1 minimum). Tested with Python 3.13.\*Correction: "Tested with Python 3.13 on Linux, plus 3.15 on Windows"
